@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "ModelTimeClass.h"
+
+
+@interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchDisplay;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+- (IBAction)AddbuttonAction:(id)sender;
+- (IBAction)ImpactValueChange:(UISlider*)sender;
+
+
+
+@property(nonatomic,strong)ModelTimeClass *modelClass;
 
 
 @end

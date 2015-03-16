@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		993389751AB3048400731459 /* ModelTimeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 993389741AB3048400731459 /* ModelTimeClass.m */; };
+		993389781AB31D1800731459 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 993389771AB31D1800731459 /* CustomCell.m */; };
+		99637C111AB69B79002F3475 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99637C101AB69B79002F3475 /* PopupView.m */; };
+		99637C141AB69BA6002F3475 /* SliderCustomClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 99637C131AB69BA6002F3475 /* SliderCustomClass.m */; };
 		99CC64E31AB1C61300B59143 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CC64E21AB1C61300B59143 /* main.m */; };
 		99CC64E61AB1C61300B59143 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CC64E51AB1C61300B59143 /* AppDelegate.m */; };
 		99CC64E91AB1C61300B59143 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CC64E81AB1C61300B59143 /* ViewController.m */; };
@@ -27,6 +31,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		993389731AB3048400731459 /* ModelTimeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTimeClass.h; sourceTree = "<group>"; };
+		993389741AB3048400731459 /* ModelTimeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTimeClass.m; sourceTree = "<group>"; };
+		993389761AB31D1800731459 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		993389771AB31D1800731459 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		99637C0F1AB69B79002F3475 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		99637C101AB69B79002F3475 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		99637C121AB69BA6002F3475 /* SliderCustomClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCustomClass.h; sourceTree = "<group>"; };
+		99637C131AB69BA6002F3475 /* SliderCustomClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCustomClass.m; sourceTree = "<group>"; };
 		99CC64DD1AB1C61300B59143 /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CC64E11AB1C61300B59143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99CC64E21AB1C61300B59143 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +97,14 @@
 				99CC64E51AB1C61300B59143 /* AppDelegate.m */,
 				99CC64E71AB1C61300B59143 /* ViewController.h */,
 				99CC64E81AB1C61300B59143 /* ViewController.m */,
+				993389761AB31D1800731459 /* CustomCell.h */,
+				993389771AB31D1800731459 /* CustomCell.m */,
+				993389731AB3048400731459 /* ModelTimeClass.h */,
+				993389741AB3048400731459 /* ModelTimeClass.m */,
+				99637C0F1AB69B79002F3475 /* PopupView.h */,
+				99637C101AB69B79002F3475 /* PopupView.m */,
+				99637C121AB69BA6002F3475 /* SliderCustomClass.h */,
+				99637C131AB69BA6002F3475 /* SliderCustomClass.m */,
 				99CC64EA1AB1C61300B59143 /* Main.storyboard */,
 				99CC64ED1AB1C61300B59143 /* Images.xcassets */,
 				99CC64EF1AB1C61300B59143 /* LaunchScreen.xib */,
@@ -220,8 +240,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				99CC64E91AB1C61300B59143 /* ViewController.m in Sources */,
+				993389751AB3048400731459 /* ModelTimeClass.m in Sources */,
 				99CC64E61AB1C61300B59143 /* AppDelegate.m in Sources */,
+				99637C111AB69B79002F3475 /* PopupView.m in Sources */,
 				99CC64E31AB1C61300B59143 /* main.m in Sources */,
+				99637C141AB69BA6002F3475 /* SliderCustomClass.m in Sources */,
+				993389781AB31D1800731459 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +370,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EasyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -356,6 +381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EasyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -414,6 +440,7 @@
 				99CC65021AB1C61400B59143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		99CC65031AB1C61400B59143 /* Build configuration list for PBXNativeTarget "EasyTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +449,7 @@
 				99CC65051AB1C61400B59143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
