@@ -57,6 +57,8 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
     CGRect popupRect = CGRectOffset(zeThumbRect, 0, -floor(zeThumbRect.size.height * 1.5));
     _popupView.frame = CGRectInset(popupRect, -20, -10);
     _popupView.value = self.value;
+
+
 }
 #pragma mark - Property accessors
 -(CGRect)thumbRect {
@@ -68,6 +70,8 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
 #pragma mark - UIControl touch event tracking
 -(BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     // Fade in and update the popup view
+    
+    
     CGPoint touchPoint = [touch locationInView:self];
     
     // Check if the knob is touched. If so, show the popup view
@@ -91,7 +95,7 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
 
 -(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     // Fade out the popup view
-    [self fadePopupViewInAndOut:NO];
+    [self fadePopupViewInAndOut:YES];
     [super endTrackingWithTouch:touch withEvent:event];
 }
 

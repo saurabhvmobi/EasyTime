@@ -16,7 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.font = [UIFont boldSystemFontOfSize:15.0f];
+        self.font = [UIFont boldSystemFontOfSize:10.0f];
         
         UIImageView *popoverView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sliderlabel.png"]];
         [self addSubview:popoverView];
@@ -33,24 +33,34 @@
     }
     return self;
 }
--(void)setValue:(float)aValue {
-    
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-       [timeFormatter setDateFormat:@"HH:mm a"];
-    
-    NSString *systemTime;
-    
-    systemTime = [timeFormatter stringFromDate:[NSDate date ]];
+
+
+-(void)setValue:(NSInteger)aValue {
     _value = aValue;
+    
+      NSInteger offsetTimeInMins = _value * 30;
+   NSDate *currentTime = [NSDate date];
+   
+    
+    
+    NSDate *modfiedDate = [currentTime dateByAddingTimeInterval:offsetTimeInMins*60];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    
+  [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
+   NSString *systemTime = [timeFormatter stringFromDate:modfiedDate];
     self.text = [NSString stringWithFormat:@"%@",systemTime];
     textLabel.text = self.text;
+  
+    
+    NSLog(@"%@",self.text);
+    
+    
     [self setNeedsDisplay];
 
 
 
-
-
 }
+
 
 
 

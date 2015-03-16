@@ -28,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+   
+    
+    
+    
     timeZone =[[NSArray alloc]init];
     mutableData = [[NSMutableArray alloc]init];
 
@@ -140,7 +144,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    [timeFormatter setDateFormat:@"HH:mm:ss"];
+    [timeFormatter setDateFormat:@"HH:mm a"];
 
     NSLog(@"system time is %@",[timeFormatter stringFromDate:[NSDate date]]);
     
@@ -206,12 +210,12 @@
 }
 
 
+
+#pragma CollectionView Delegate and data source
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [mutableData count];
 }
-
-
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"cellCollection";
@@ -220,20 +224,11 @@
     cell.deletebtn.tag = indexPath.item;
     [cell.deletebtn addTarget:self action:@selector(deleteCustom:) forControlEvents:UIControlEventTouchUpInside];
     cell.backgroundColor=[UIColor grayColor];
-    
-    
-   
-    
     UILabel *zone=(UILabel *)[cell viewWithTag:100];
-    
     ModelTimeClass *model = mutableData[indexPath.row];
     zone.text = model.timeZone;
-    
-    
     UILabel *time=(UILabel *)[cell viewWithTag:101];
     time.text = model.time;
-   
-    
     UILabel *date=(UILabel *)[cell viewWithTag:102];
     date.text = model.Date;
 
@@ -244,7 +239,7 @@
 
 -(void)deleteCustom:(UIButton *)button
 {
-    NSLog(@"button tag : %d",button.tag);
+   // NSLog(@"button tag : %d",button.tag);
     [mutableData removeObjectAtIndex:button.tag];
     
     [self.collectionView reloadData];
