@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		992FA97A1AB7EA590056269A /* CalculateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 992FA9791AB7EA590056269A /* CalculateTime.m */; };
 		993389751AB3048400731459 /* ModelTimeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 993389741AB3048400731459 /* ModelTimeClass.m */; };
 		993389781AB31D1800731459 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 993389771AB31D1800731459 /* CustomCell.m */; };
 		99637C111AB69B79002F3475 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99637C101AB69B79002F3475 /* PopupView.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		992FA9781AB7EA590056269A /* CalculateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateTime.h; sourceTree = "<group>"; };
+		992FA9791AB7EA590056269A /* CalculateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateTime.m; sourceTree = "<group>"; };
 		993389731AB3048400731459 /* ModelTimeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTimeClass.h; sourceTree = "<group>"; };
 		993389741AB3048400731459 /* ModelTimeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTimeClass.m; sourceTree = "<group>"; };
 		993389761AB31D1800731459 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				99637C101AB69B79002F3475 /* PopupView.m */,
 				99637C121AB69BA6002F3475 /* SliderCustomClass.h */,
 				99637C131AB69BA6002F3475 /* SliderCustomClass.m */,
+				992FA9781AB7EA590056269A /* CalculateTime.h */,
+				992FA9791AB7EA590056269A /* CalculateTime.m */,
 				99CC64EA1AB1C61300B59143 /* Main.storyboard */,
 				99CC64ED1AB1C61300B59143 /* Images.xcassets */,
 				99CC64EF1AB1C61300B59143 /* LaunchScreen.xib */,
@@ -246,6 +251,7 @@
 				99CC64E31AB1C61300B59143 /* main.m in Sources */,
 				99637C141AB69BA6002F3475 /* SliderCustomClass.m in Sources */,
 				993389781AB31D1800731459 /* CustomCell.m in Sources */,
+				992FA97A1AB7EA590056269A /* CalculateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

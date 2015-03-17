@@ -10,12 +10,12 @@
 #import <Foundation/Foundation.h>
 
 
+
 @interface PopupView : UIView
 
 
 @property (nonatomic) NSInteger value;
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic, retain) NSString *text;
-
 
 @end

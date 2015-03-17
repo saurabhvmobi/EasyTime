@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ModelTimeClass.h"
-
+#import "PopupView.h"
 
 @interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -23,6 +23,9 @@
 
 
 @property(nonatomic,strong)ModelTimeClass *modelClass;
+@property(nonatomic,strong)NSString *selectedTimeZone;
+@property(nonatomic,strong)NSMutableArray *mutableData;
+
 
 
 @end

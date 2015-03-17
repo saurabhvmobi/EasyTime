@@ -14,5 +14,6 @@
 @property(nonatomic,strong)NSString *time;
 @property(nonatomic,strong)NSString *systemTime;
 @property(nonatomic,strong)NSString *Date;
+@property(nonatomic)NSInteger index;
 
 @end

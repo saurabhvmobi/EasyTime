@@ -90,7 +90,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="FhT-br-p9T"/>
                                 </connections>
                             </collectionView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="48" translatesAutoresizingMaskIntoConstraints="NO" id="8bY-Dv-ek1" customClass="SliderCustomClass">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="96" translatesAutoresizingMaskIntoConstraints="NO" id="8bY-Dv-ek1" customClass="SliderCustomClass">
                                 <rect key="frame" x="10" y="121" width="580" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cZ2-cE-8JL"/>

@@ -8,16 +8,18 @@
 
 #import "ViewController.h"
 #import "CustomCell.h"
+#import "PopupView.h"
+
 @interface ViewController ()
 {
 
     NSArray *timeZone;
     NSArray *searchResults;
-    NSString *selectedTimeZone;
+   // NSString *selectedTimeZone;
     NSArray *collectionData;
 
 
-    NSMutableArray *mutableData;
+   // NSMutableArray *mutableData;
     
 }
 
@@ -27,13 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
    
-    
-    
+   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTime:) name:@"SLIDERVALUE" object:nil];
     
     timeZone =[[NSArray alloc]init];
-    mutableData = [[NSMutableArray alloc]init];
+   
+    self.mutableData = [[NSMutableArray alloc]init];
 
      timeZone = [NSTimeZone knownTimeZoneNames];
 
@@ -49,6 +51,66 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+-(void)updateTime:(NSNotification *)notification
+{
+    
+ 
+    int  value =[[notification object]integerValue];
+    
+    
+    
+    for (ModelTimeClass *modelData in self.mutableData) {
+        
+     
+        
+        [self updateCellWithValues:modelData.index sliderValue:value :modelData];
+        
+        
+    }
+    
+   
+    
+    
+   
+}
+
+
+
+
+-(void)updateCellWithValues:(NSInteger)index sliderValue:(int)value :(ModelTimeClass *)modelData
+{
+ 
+    //update cell value
+    NSLog(@"value %d",index);
+    NSInteger offsetTimeInMins = value * 15;
+    NSDate *currentTime = [NSDate date];
+    NSDate *modfiedDate = [currentTime dateByAddingTimeInterval:offsetTimeInMins*60];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    [timeFormatter setDateFormat:@"HH:mm a"];
+    
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",modelData.timeZone]]];
+    [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",modelData.timeZone]]];
+    
+    modelData.time = [timeFormatter stringFromDate:modfiedDate];
+    modelData.Date = [dateFormatter stringFromDate:modfiedDate];
+   
+    
+    NSLog(@"modelData.time %@",modelData.time);
+    
+    
+    NSIndexPath *indexPath =[ NSIndexPath indexPathForItem:index inSection:0];
+    
+   [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    
+}
+
+#pragma TableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -90,37 +152,24 @@
 {
     
     
-    selectedTimeZone =searchResults[indexPath.row];
+       self.selectedTimeZone =searchResults[indexPath.row];
     
     
     
        self.searchView.hidden =YES;
        [self.searchDisplay.searchBar resignFirstResponder];
-       self.searchDisplayController.searchBar.text=[NSString stringWithFormat:@"%@",selectedTimeZone];
+       self.searchDisplayController.searchBar.text=[NSString stringWithFormat:@"%@",self.selectedTimeZone];
        self.searchDisplayController.searchResultsTableView.hidden=YES;
     
 }
 
-
-
-
-
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope12
 {
    
-    
-    
-    NSPredicate *rest= [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
-    
-   // NSPredicate *rest = [NSPredicate predicateWithFormat:@"SELF.category contains[c] %@", searchText];
-    
-    searchResults = [timeZone filteredArrayUsingPredicate:rest];
-
-
-
+NSPredicate *rest= [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
+searchResults = [timeZone filteredArrayUsingPredicate:rest];
 
 }
-
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
@@ -138,36 +187,23 @@
 {
 
    
-    ModelTimeClass *modelData=[[ModelTimeClass alloc]init];
+     ModelTimeClass *modelData=[[ModelTimeClass alloc]init];
     
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
     [timeFormatter setDateFormat:@"HH:mm a"];
-
     NSLog(@"system time is %@",[timeFormatter stringFromDate:[NSDate date]]);
-    
     NSLog(@"system time is %@",[dateFormatter stringFromDate:[NSDate date]]);
-
-    
-    
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",selectedTimeZone]]];
-
-    [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",selectedTimeZone]]];
-
-
+   [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",self.selectedTimeZone]]];
+    [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",self.selectedTimeZone]]];
     NSString *timeString = [timeFormatter stringFromDate:[NSDate date]];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    
     modelData.time = [timeFormatter stringFromDate:[NSDate date]];
     modelData.Date = [dateFormatter stringFromDate:[NSDate date]];
-    modelData.timeZone = [NSString stringWithFormat:@"%@",selectedTimeZone];
-    
-    
-    
-    
-    [mutableData addObject:modelData];
+    modelData.timeZone = self.selectedTimeZone;
+    [self.mutableData addObject:modelData];
     
     
     NSLog(@"Time is.....: %@", timeString);
@@ -183,12 +219,13 @@
 - (IBAction)AddbuttonAction:(id)sender {
 
      NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-     selectedTimeZone = searchResults[indexPath.row];
+    self. selectedTimeZone = searchResults[indexPath.row];
     
     
-    NSLog(@"%@",selectedTimeZone);
+    NSLog(@"%@",self.selectedTimeZone);
 
     [self getTimeandDateaccordingtoTimeZone];
+    
     
     self.searchDisplayController.searchResultsTableView.hidden=YES;
     self.searchView.hidden =YES;
@@ -214,7 +251,7 @@
 #pragma CollectionView Delegate and data source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [mutableData count];
+    return [self.mutableData count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -223,9 +260,11 @@
     CustomCell *cell =(CustomCell *) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.deletebtn.tag = indexPath.item;
     [cell.deletebtn addTarget:self action:@selector(deleteCustom:) forControlEvents:UIControlEventTouchUpInside];
+    
     cell.backgroundColor=[UIColor grayColor];
     UILabel *zone=(UILabel *)[cell viewWithTag:100];
-    ModelTimeClass *model = mutableData[indexPath.row];
+    ModelTimeClass *model = self.mutableData[indexPath.row];
+    model.index = indexPath.row;
     zone.text = model.timeZone;
     UILabel *time=(UILabel *)[cell viewWithTag:101];
     time.text = model.time;
@@ -240,8 +279,7 @@
 -(void)deleteCustom:(UIButton *)button
 {
    // NSLog(@"button tag : %d",button.tag);
-    [mutableData removeObjectAtIndex:button.tag];
-    
+    [self.mutableData removeObjectAtIndex:button.tag];
     [self.collectionView reloadData];
 }
 

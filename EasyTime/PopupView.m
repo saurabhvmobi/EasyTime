@@ -11,11 +11,14 @@
 
 {
     UILabel *textLabel;
-}
+   }
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        
+     
         self.font = [UIFont boldSystemFontOfSize:10.0f];
         
         UIImageView *popoverView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sliderlabel.png"]];
@@ -37,31 +40,26 @@
 
 -(void)setValue:(NSInteger)aValue {
     _value = aValue;
-    
-      NSInteger offsetTimeInMins = _value * 30;
-   NSDate *currentTime = [NSDate date];
-   
+    NSString *t_val=[NSString stringWithFormat:@"%ld",(long)_value];
     
     
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SLIDERVALUE" object:t_val];
+
+    NSInteger offsetTimeInMins = _value * 15;
+    NSDate *currentTime = [NSDate date];
+    NSLog(@"%ld",(long)offsetTimeInMins);
     NSDate *modfiedDate = [currentTime dateByAddingTimeInterval:offsetTimeInMins*60];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    
-  [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
-   NSString *systemTime = [timeFormatter stringFromDate:modfiedDate];
+    [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
+    NSString *systemTime = [timeFormatter stringFromDate:modfiedDate];
     self.text = [NSString stringWithFormat:@"%@",systemTime];
     textLabel.text = self.text;
-  
-    
-    NSLog(@"%@",self.text);
-    
     
     [self setNeedsDisplay];
 
-
+    
 
 }
-
-
-
 
 @end

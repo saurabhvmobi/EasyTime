@@ -17,6 +17,11 @@
     // Drawing code
 }
 */
+
+
+
+
+
 #pragma mark - Helper methods
 -(void)constructSlider {
 _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
@@ -50,6 +55,8 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
         _popupView.alpha = 0.0;
     }
     [UIView commitAnimations];
+
+ 
 }
 
 -(void)positionAndUpdatePopupView {
