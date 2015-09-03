@@ -34,6 +34,8 @@
 /* Begin PBXFileReference section */
 		992FA9781AB7EA590056269A /* CalculateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateTime.h; sourceTree = "<group>"; };
 		992FA9791AB7EA590056269A /* CalculateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateTime.m; sourceTree = "<group>"; };
+		992FA97C1AB85CEF0056269A /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Base; path = "Base.lproj/NSString+ImageName.h"; sourceTree = "<group>"; };
+		992FA97E1AB85CEF0056269A /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base; path = "Base.lproj/NSString+ImageName.m"; sourceTree = "<group>"; };
 		993389731AB3048400731459 /* ModelTimeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTimeClass.h; sourceTree = "<group>"; };
 		993389741AB3048400731459 /* ModelTimeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTimeClass.m; sourceTree = "<group>"; };
 		993389761AB31D1800731459 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -96,6 +98,8 @@
 		99CC64DF1AB1C61300B59143 /* EasyTime */ = {
 			isa = PBXGroup;
 			children = (
+				992FA97B1AB85CEF0056269A /* NSString+ImageName.h */,
+				992FA97D1AB85CEF0056269A /* NSString+ImageName.m */,
 				99CC64E41AB1C61300B59143 /* AppDelegate.h */,
 				99CC64E51AB1C61300B59143 /* AppDelegate.m */,
 				99CC64E71AB1C61300B59143 /* ViewController.h */,
@@ -274,6 +278,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		992FA97B1AB85CEF0056269A /* NSString+ImageName.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				992FA97C1AB85CEF0056269A /* Base */,
+			);
+			name = "NSString+ImageName.h";
+			sourceTree = "<group>";
+		};
+		992FA97D1AB85CEF0056269A /* NSString+ImageName.m */ = {
+			isa = PBXVariantGroup;
+			children = (
+				992FA97E1AB85CEF0056269A /* Base */,
+			);
+			name = "NSString+ImageName.m";
+			sourceTree = "<group>";
+		};
 		99CC64EA1AB1C61300B59143 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

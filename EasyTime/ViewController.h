@@ -20,13 +20,14 @@
 - (IBAction)AddbuttonAction:(id)sender;
 - (IBAction)ImpactValueChange:(UISlider*)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *addbutton;
 
-
+-(void)getTimeandDateaccordingtoTimeZone;
 @property(nonatomic,strong)ModelTimeClass *modelClass;
 @property(nonatomic,strong)NSString *selectedTimeZone;
 @property(nonatomic,strong)NSMutableArray *mutableData;
 
-
+-(NSString *)returnImageName :(NSString *)getTime;
 
 @end
 

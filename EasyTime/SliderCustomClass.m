@@ -22,6 +22,7 @@
 
 
 
+
 #pragma mark - Helper methods
 -(void)constructSlider {
 _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
@@ -75,8 +76,14 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - UIControl touch event tracking
+
+
+
+
 -(BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     // Fade in and update the popup view
+    
+    
     
     
     CGPoint touchPoint = [touch locationInView:self];
@@ -88,6 +95,8 @@ _popupView = [[PopupView alloc] initWithFrame:CGRectZero];
     }
     
     return [super beginTrackingWithTouch:touch withEvent:event];
+
+
 }
 
 -(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {

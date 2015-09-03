@@ -39,20 +39,34 @@
 
 
 -(void)setValue:(NSInteger)aValue {
+    
+    
+    
+    
     _value = aValue;
     NSString *t_val=[NSString stringWithFormat:@"%ld",(long)_value];
     
-    
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SLIDERVALUE" object:t_val];
 
-    NSInteger offsetTimeInMins = _value * 15;
-    NSDate *currentTime = [NSDate date];
+   NSInteger offsetTimeInMins = _value * 15;
+    
+    
     NSLog(@"%ld",(long)offsetTimeInMins);
+    
+   
+    
+    NSDate *currentTime = [NSDate date];
+   NSLog(@"%ld",(long)offsetTimeInMins);
     NSDate *modfiedDate = [currentTime dateByAddingTimeInterval:offsetTimeInMins*60];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    
+    
+    
     [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
+    
     NSString *systemTime = [timeFormatter stringFromDate:modfiedDate];
+    
+    
     self.text = [NSString stringWithFormat:@"%@",systemTime];
     textLabel.text = self.text;
     

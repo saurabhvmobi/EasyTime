@@ -21,6 +21,14 @@
 
    // NSMutableArray *mutableData;
     
+    
+
+
+  
+
+
+
+
 }
 
 @end
@@ -30,7 +38,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-   
+    
+       
+    
+    
+    
+    
+    self.addbutton.enabled = NO;
+    
+    
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTime:) name:@"SLIDERVALUE" object:nil];
     
     timeZone =[[NSArray alloc]init];
@@ -60,21 +76,18 @@
  
     int  value =[[notification object]integerValue];
     
-    
-    
     for (ModelTimeClass *modelData in self.mutableData) {
         
-     
+     [self updateCellWithValues:modelData.index sliderValue:value :modelData];
         
-        [self updateCellWithValues:modelData.index sliderValue:value :modelData];
+      
         
         
     }
     
-   
-    
-    
-   
+
+
+
 }
 
 
@@ -84,15 +97,22 @@
 {
  
     //update cell value
-    NSLog(@"value %d",index);
+    NSLog(@"value %ld",(long)index);
     NSInteger offsetTimeInMins = value * 15;
     NSDate *currentTime = [NSDate date];
     NSDate *modfiedDate = [currentTime dateByAddingTimeInterval:offsetTimeInMins*60];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    [timeFormatter setDateFormat:@"HH:mm a"];
+//    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+//    [timeFormatter setDateFormat:@"HH:mm a"];
+    
+   
+    [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
+    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"EEEE dd MMMM" options:0 locale:[NSLocale currentLocale]]];
+    
+    
+    
     
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",modelData.timeZone]]];
     [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",modelData.timeZone]]];
@@ -151,6 +171,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    self.addbutton.enabled=YES;
     
        self.selectedTimeZone =searchResults[indexPath.row];
     
@@ -192,8 +213,12 @@ searchResults = [timeZone filteredArrayUsingPredicate:rest];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    [timeFormatter setDateFormat:@"HH:mm a"];
+//    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+//    [timeFormatter setDateFormat:@"HH:mm a"];
+    
+     [timeFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a" options:0 locale:[NSLocale currentLocale]]];
+     [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"EEEE dd MMMM" options:0 locale:[NSLocale currentLocale]]];
+    
     NSLog(@"system time is %@",[timeFormatter stringFromDate:[NSDate date]]);
     NSLog(@"system time is %@",[dateFormatter stringFromDate:[NSDate date]]);
    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[NSString stringWithFormat:@"%@",self.selectedTimeZone]]];
@@ -231,7 +256,10 @@ searchResults = [timeZone filteredArrayUsingPredicate:rest];
     self.searchView.hidden =YES;
     
     self.searchDisplayController.searchBar.text=[NSString stringWithFormat:@""];
-   // self.searchDisplayController.searchBar.showsCancelButton=NO;
+    self.addbutton.enabled = NO;
+    
+    
+    // self.searchDisplayController.searchBar.showsCancelButton=NO;
     [self.searchDisplayController.searchBar resignFirstResponder];
 
    
@@ -265,13 +293,37 @@ searchResults = [timeZone filteredArrayUsingPredicate:rest];
     UILabel *zone=(UILabel *)[cell viewWithTag:100];
     ModelTimeClass *model = self.mutableData[indexPath.row];
     model.index = indexPath.row;
-    zone.text = model.timeZone;
+    
+   
+    
+    NSString *str = [NSString stringWithFormat:@"%@",model.timeZone];
+    
+    NSArray *arr = [str componentsSeparatedByString:@"/"];
+    if (arr)
+    {
+        NSString * firstString = [arr objectAtIndex:0];
+        NSString * secondString = [arr objectAtIndex:1];
+        NSLog(@"First String %@",firstString);
+        NSLog(@"Second String %@",secondString);
+    }
+    
+    
+    zone.text =  [arr objectAtIndex:1];//model.timeZone;
+    
+    
     UILabel *time=(UILabel *)[cell viewWithTag:101];
     time.text = model.time;
     UILabel *date=(UILabel *)[cell viewWithTag:102];
     date.text = model.Date;
 
- 
+    UIImageView *img=(UIImageView *)[cell viewWithTag:500];
+   // img.image=[UIImage imageNamed:@"cellbackground3"];
+    
+   
+    
+    img.image=[UIImage imageNamed:[self returnImageName:model.time]];
+    
+    
     
     return cell;
 }
@@ -283,6 +335,48 @@ searchResults = [timeZone filteredArrayUsingPredicate:rest];
     [self.collectionView reloadData];
 }
 
+
+
+-(NSString *)returnImageName :(NSString *)getTime
+{
+
+    NSString *imageName;
+
+    
+    NSLog(@"%@",getTime);
+    
+    int time;
+    time = [getTime integerValue];
+    
+    
+if ((time >=0) &&(time<3)) {
+        imageName =@"cellbackground1";
+    }
+   
+    else if((time >=3)&&(time<6))
+    {
+    imageName =@"cellbackground2";
+    }
+    
+    else if((time >=6)&&(time<9))
+    {
+     imageName =@"cellbackground3";
+    }
+    
+    else if((time >=9)&&(time<=12))
+    {
+     imageName =@"cellbackground4";
+    }
+    
+
+
+
+   
+    
+    
+    return imageName;
+
+}
 
 
 
